@@ -31,8 +31,8 @@ export default {
       open: false,
       preview: "",
       src: "",
-      name: "",
-      surname: "",
+      name: "Ventura",
+      surname: "ventura",
     },
   },
 
