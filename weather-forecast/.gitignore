@@ -8,8 +8,6 @@
 # testing
 /coverage
 
-# keys
-/src/utils/keys
 /static/js
 
 # production
