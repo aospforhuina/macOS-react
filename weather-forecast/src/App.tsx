@@ -6,6 +6,7 @@ import reducer from "./reducers/reducer";
 import sampleStore from "./utils/keys/samples/sampleStore";
 import WeatherBoard from "./components/WeatherBoard/WeatherBoard";
 import QueryBoard from "./components/QueryBoard/QueryBoard";
+import Terminal from "./components/Terminal/Terminal";
 import Draggable from "react-draggable";
 import NavBar from "./components/NavBar/NavBar";
 import Page from "./components/Page/Page";
@@ -20,7 +21,7 @@ export const store = createContext<any>(null);
 
 // Create store provider to wrap subcomponents in
 const StoreProvider = ({ children }: any) => (
-  <store.Provider value={useReducer(reducer, sampleStore)}>
+  <store.Provider value={useReducer(reducer as any, sampleStore as any)}>
     {children}
   </store.Provider>
 );
@@ -31,6 +32,23 @@ function App() {
       <StoreProvider>
         <Page>
           <NavBar />
+          <div className="wde-terminal-window" id="wde-terminal-window">
+            <Draggable
+              handle="#wde-terminal-handle"
+              onStart={(e: any) => {
+                if (e.target.id !== "wde-terminal-handle") {
+                  return false;
+                }
+              }}
+            >
+              <div className={`window terminal-window`} id="terminal-window">
+                <div className="terminal-titlebar" id="wde-terminal-handle">
+                  <span className="terminal-title">WDE Terminal</span>
+                </div>
+                <Terminal />
+              </div>
+            </Draggable>
+          </div>
           <Draggable
             handle="#handle"
             onStart={(e: any) => {
