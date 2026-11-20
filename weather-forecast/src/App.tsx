@@ -35,10 +35,13 @@ function App() {
           <div className="wde-terminal-window" id="wde-terminal-window">
             <Draggable
               handle="#wde-terminal-handle"
-              onStart={(e: any) => {
+              onStart={(e: any): false | void => {
                 // 글씨(span) 등 핸들의 자식을 잡아도 드래그되도록,
                 // id 직접 비교 대신 closest 로 핸들 영역 포함 여부 판정.
-                return e.target.closest("#wde-terminal-handle") != null;
+                if (!e.target.closest("#wde-terminal-handle")) {
+                  return false;
+                }
+                return undefined;
               }}
             >
               <div className={`window terminal-window`} id="terminal-window">
