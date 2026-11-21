@@ -7,6 +7,7 @@ import sampleStore from "./utils/keys/samples/sampleStore";
 import WeatherBoard from "./components/WeatherBoard/WeatherBoard";
 import QueryBoard from "./components/QueryBoard/QueryBoard";
 import Terminal from "./components/Terminal/Terminal";
+import FrameViewer from "./components/FrameViewer/FrameViewer";
 import Draggable from "react-draggable";
 import NavBar from "./components/NavBar/NavBar";
 import Page from "./components/Page/Page";
@@ -49,6 +50,24 @@ function App() {
                   <span className="terminal-title">WDE Terminal</span>
                 </div>
                 <Terminal />
+              </div>
+            </Draggable>
+          </div>
+          <div className="wde-frame-window" id="wde-frame-window">
+            <Draggable
+              handle="#wde-frame-handle"
+              onStart={(e: any): false | void => {
+                if (!e.target.closest("#wde-frame-handle")) {
+                  return false;
+                }
+                return undefined;
+              }}
+            >
+              <div className={`window frame-window`} id="frame-window">
+                <div className="frame-titlebar" id="wde-frame-handle">
+                  <span className="frame-title">GTK Window</span>
+                </div>
+                <FrameViewer />
               </div>
             </Draggable>
           </div>
